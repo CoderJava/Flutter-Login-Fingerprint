@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:flutter/services.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_login_fingerprint/src/blocs/login_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:local_auth/local_auth.dart';
 
 var _scaffoldState = GlobalKey<ScaffoldState>();
 final _controllerUsername = TextEditingController();
@@ -55,11 +57,20 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  _checkStatusLogin(LoginState state) {
+  _checkStatusLogin(LoginState state) async {
     if (state is LoginFailed) {
       _scaffoldState.currentState.showSnackBar(
         SnackBar(content: Text('${state.error}')),
       );
+    } else if (state is LoginSuccess) {
+      var localAuth = LocalAuthentication();
+      try {
+        bool isAuthenticate = await localAuth.authenticateWithBiometrics(
+            localizedReason: 'Please authenticate to login', stickyAuth: true);
+        print('isAuthenticate: ' + isAuthenticate.toString());
+      } on PlatformException catch (e) {
+        print(e);
+      }
     }
   }
 
