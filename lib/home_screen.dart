@@ -12,14 +12,14 @@ class HomeScreen extends StatelessWidget {
           Expanded(
             child: ListView(
               children: <Widget>[
-                _buildWidgetIconBiking(mediaQuery, context),
-                _buildWidgetLabelContinueWith(),
-                _buildWidgetLoginViaSocialMedia(),
-                _buildWidgetLabelSignInWithEmail(),
-                _buildWidgetTextFieldUsername(),
-                _buildWidgetTextFieldPassword(),
-                _buildWidgetLoginButton(),
-                _buildWidgetResetPasswordButton(),
+                WidgetIconBiking(),
+                WidgetLabelContinueWith(),
+                WidgetLoginViaSocialMedia(),
+                WidgetLabelSignInWithEmail(),
+                WidgetTextFieldUsername(),
+                WidgetTextFieldPassword(),
+                WidgetLoginButton(),
+                WidgetResetPasswordButton(),
               ],
             ),
           ),
@@ -57,92 +57,66 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildWidgetResetPasswordButton() {
+}
+
+class WidgetIconBiking extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Wrap(
+      padding: EdgeInsets.only(
+        left: 16.0,
+        top: mediaQuery.padding.top > 0 ? mediaQuery.padding.top : 16.0,
+        right: 16.0,
+      ),
+      child: Stack(
         children: <Widget>[
           Center(
-            child: FlatButton(
+            child: Image.asset(
+              'assets/images/img_biking.png',
+              width: mediaQuery.size.width / 1.5,
+              fit: BoxFit.fitWidth,
+              alignment: Alignment.topCenter,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Center(
               child: Text(
-                'RESET PASSWORD',
+                'Biking App',
                 style: TextStyle(
-                  color: Color(0xFF6C63FF),
-                  fontFamily: 'NanumGothic',
-                ),
+                    fontSize: 24.0,
+                    fontFamily: 'NanumGothic',
+                    color: Colors.black54),
               ),
-              onPressed: () {
-                // TODO: do something in here
-              },
             ),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildWidgetLoginButton() {
+class WidgetLabelContinueWith extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
-      child: RaisedButton(
-        child: Text(
-          'LOG IN',
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: 'NanumGothic',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        color: Color(0xFF6C63FF),
-        onPressed: () {
-          // TODO: do something in here
-        },
-      ),
-    );
-  }
-
-  Widget _buildWidgetTextFieldPassword() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
-      child: TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Password',
-          contentPadding: EdgeInsets.all(16.0),
-        ),
-        keyboardType: TextInputType.text,
-        obscureText: true,
-      ),
-    );
-  }
-
-  Widget _buildWidgetTextFieldUsername() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
-      child: TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Email Address / Username',
-          contentPadding: EdgeInsets.all(16.0),
-        ),
-        keyboardType: TextInputType.emailAddress,
-      ),
-    );
-  }
-
-  Widget _buildWidgetLabelSignInWithEmail() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 28.0),
+      padding: const EdgeInsets.only(top: 16.0),
       child: Center(
         child: Text(
-          'Or sign in with email',
-          style: TextStyle(color: Colors.black54),
+          'Continue with',
+          style: TextStyle(
+            color: Colors.black54,
+          ),
         ),
       ),
     );
   }
+}
 
-  Widget _buildWidgetLoginViaSocialMedia() {
+class WidgetLoginViaSocialMedia extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 8.0, right: 16.0),
       child: Row(
@@ -191,49 +165,100 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildWidgetLabelContinueWith() {
+class WidgetLabelSignInWithEmail extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.only(top: 28.0),
       child: Center(
         child: Text(
-          'Continue with',
-          style: TextStyle(
-            color: Colors.black54,
-          ),
+          'Or sign in with email',
+          style: TextStyle(color: Colors.black54),
         ),
       ),
     );
   }
+}
 
-  Widget _buildWidgetIconBiking(
-      MediaQueryData mediaQuery, BuildContext context) {
+class WidgetTextFieldUsername extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        left: 16.0,
-        top: mediaQuery.padding.top > 0 ? mediaQuery.padding.top : 16.0,
-        right: 16.0,
+      padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+      child: TextField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Email Address / Username',
+          contentPadding: EdgeInsets.all(16.0),
+        ),
+        keyboardType: TextInputType.emailAddress,
       ),
-      child: Stack(
+    );
+  }
+}
+
+class WidgetTextFieldPassword extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+      child: TextField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Password',
+          contentPadding: EdgeInsets.all(16.0),
+        ),
+        keyboardType: TextInputType.text,
+        obscureText: true,
+      ),
+    );
+  }
+}
+
+class WidgetLoginButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+      child: RaisedButton(
+        child: Text(
+          'LOG IN',
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'NanumGothic',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        color: Color(0xFF6C63FF),
+        onPressed: () {
+          // TODO: do something in here
+        },
+      ),
+    );
+  }
+}
+
+class WidgetResetPasswordButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Wrap(
         children: <Widget>[
           Center(
-            child: Image.asset(
-              'assets/images/img_biking.png',
-              width: mediaQuery.size.width / 1.5,
-              fit: BoxFit.fitWidth,
-              alignment: Alignment.topCenter,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Center(
+            child: FlatButton(
               child: Text(
-                'Biking App',
+                'RESET PASSWORD',
                 style: TextStyle(
-                    fontSize: 24.0,
-                    fontFamily: 'NanumGothic',
-                    color: Colors.black54),
+                  color: Color(0xFF6C63FF),
+                  fontFamily: 'NanumGothic',
+                ),
               ),
+              onPressed: () {
+                // TODO: do something in here
+              },
             ),
           ),
         ],
