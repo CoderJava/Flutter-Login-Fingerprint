@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
+import 'package:flutter_login_fingerprint/src/ui/login_screen.dart';
 
 class App extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class App extends StatelessWidget {
         primaryColor: Color(0xFF6C63FF),
         accentColor: Color(0xFF6C63FF),
       ),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }

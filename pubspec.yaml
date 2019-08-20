@@ -13,8 +13,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
-  # Font Awesome Icon pack
+  # Font Awesome Icon pack.
   font_awesome_flutter: ^8.5.0
+
+  # Device authentication sensors such as Fingerprint Reader and Touch ID.
+  local_auth: ^0.5.2+4
+
+  # Flutter package that helps implement the BLoC pattern.
+  flutter_bloc: ^0.21.0
 
 dev_dependencies:
   flutter_test:
